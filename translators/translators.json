@@ -1,0 +1,25 @@
+{
+  // The slicing conversion needs PrusaSlicer itself, so it ships as a script-bridge manifest
+  // entry rather than C#: the server runs the console slicer over the project file. A Prusa
+  // project 3MF embeds its print/filament/printer settings, so no --load profile is needed;
+  // a bare model 3MF without settings will fail with the slicer's own message.
+  //
+  // PRUSASLICER_CMD must point at prusa-slicer-console.exe on the Translation server —
+  // PrusaSlicer is NOT installed there today; this entry loads and lists, and the first job
+  // will say exactly which variable to set. The C# translators in this same folder work
+  // regardless (a plugin folder may carry DLLs, a manifest, or both).
+  "translators": [
+    {
+      "key": "3mf_to_gcode",
+      "label": "3MF → G-code",
+      "description": "Slices a PrusaSlicer project (settings embedded in the 3MF) to G-code with the console slicer.",
+      "inputMimeType": "model/3mf",
+      "outputMimeType": "text/x-gcode",
+      "outputFileExtension": ".gcode",
+      "inputFileExtension": ".3mf",
+      "command": "${ENV:PRUSASLICER_CMD}",
+      "args": ["--export-gcode", "${input}", "--output", "${output}"],
+      "timeoutSeconds": 900
+    }
+  ]
+}

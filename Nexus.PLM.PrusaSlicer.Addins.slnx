@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Nexus.PLM.PrusaSlicer.Translators/Nexus.PLM.PrusaSlicer.Translators.csproj" />
+  <Project Path="Nexus.PLM.PrusaSlicer.Translators.Tests/Nexus.PLM.PrusaSlicer.Translators.Tests.csproj" />
+</Solution>
